@@ -15,7 +15,7 @@ namespace OpenExchangeRates_Test
     [TestClass]
     public class Test_OpenExchangeRatesClient
     {
-        private const string API_KEY = "5c47e65e5ed145ddbd780daa1ee2f098";//"irrelevant";
+        private const string API_KEY "<your api key>";
 
         OpenExchangeRatesClient openExchangeRates;
         PrivateObject privObj;
