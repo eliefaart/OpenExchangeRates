@@ -1,22 +1,19 @@
-OpenExchangeRates
-=================
+#OpenExchangeRates
 
 C#.Net class library for querying the openexchangerates.org REST API.
 
-Features 
-========
+##Features
 * Retrieve the full list of currencies supported by Open Exchange Rates
 * Retrieve the current exchange rates for currencies
-    Specify base currency for exchange rates
-    Limit list of returned exchange rates to specific currencies
+  * Specify base currency for exchange rates
+  * Limit list of returned exchange rates to specific currencies
 
-Supports HTTP ETag
-==================
-http://en.wikipedia.org/wiki/HTTP_ETag
+##Supports HTTP ETag
+http://en.wikipedia.org/wiki/HTTP_ETag  
 Responses from the server are cached and whenever the server is queried again for the latest exchange rates, the etag from the previous response is included in the new request. This means the server will only give a full response back if the data since the previous request was updated, otherwise an empty response with HTTP code 304 (Not Modified) is returned. This potentially reduces some bandwidth.
 
-Basic usage
-===========
+##Basic usage
+```
 OpenExchangeRatesClient oerClient = new OpenExchangeRatesClient("<your api key>");
 
 // Get all supported currencies
@@ -41,3 +38,4 @@ catch (APIErrorException aee)
   Console.Error.WriteLine(errorMessage.ToString());
 }
 catch (Exception) { }
+```
