@@ -18,10 +18,13 @@ namespace OpenExchangeRates
         /// </summary>
         /// <param name="fromCurrency">Base currency</param>
         /// <param name="toCurrency">Target/desired currency</param>
-        /// <exception cref="NullReferenceException">Thrown when either or both of specified currency codes is unknown</exception>
+        /// <exception cref="NullReferenceException">Thrown when either or both of specified currency codes is unknown, or when </exception>
         /// <returns>Conversion rate</returns>
         public decimal GetConversionRate(string fromCurrency, string toCurrency)
         {
+            if (Rates == null || Rates.Count == 1)
+                throw new NullReferenceException("No exchange rates stored in the Rates property of this instance");
+
             decimal fromR, toR;
 
             if(!Rates.TryGetValue(fromCurrency, out fromR))
@@ -40,7 +43,7 @@ namespace OpenExchangeRates
         /// <param name="toCurrency">Target/desired currency</param>
         /// <param name="value">Value to be converted</param>
         /// <returns>Converted value</returns>
-        public decimal ConvertInto(string fromCurrency, string toCurrency, decimal value)
+        public decimal ConvertCurrency(string fromCurrency, string toCurrency, decimal value)
         {
             return value * this.GetConversionRate(fromCurrency, toCurrency);
         }
@@ -52,7 +55,7 @@ namespace OpenExchangeRates
         /// <param name="toCurrency">Target/desired currency</param>
         /// <param name="values">List of values to be converted</param>
         /// <returns>List of converted values</returns>
-        public List<decimal> ConvertInto(string fromCurrency, string toCurrency, List<decimal> values)
+        public List<decimal> ConvertCurrency(string fromCurrency, string toCurrency, List<decimal> values)
         {
             List<decimal> _returnValues = new List<decimal>(values.Count);
             decimal conversionRate = this.GetConversionRate(fromCurrency, toCurrency);

@@ -74,17 +74,17 @@ namespace OpenExchangeRates_Test
 
             //#1
             expected = valueToConvert * (CNY_VAL / EUR_VAL);
-            actual = exchangeRates.ConvertInto(EUR_STR, CNY_STR, valueToConvert);
+            actual = exchangeRates.ConvertCurrency(EUR_STR, CNY_STR, valueToConvert);
             Assert.AreEqual(expected, actual);
 
             //#2
             expected = valueToConvert * (CNY_VAL / USD_VAL);
-            actual = exchangeRates.ConvertInto(USD_STR, CNY_STR, valueToConvert);
+            actual = exchangeRates.ConvertCurrency(USD_STR, CNY_STR, valueToConvert);
             Assert.AreEqual(expected, actual);
 
             //#3
             expected = valueToConvert * (EUR_VAL / CNY_VAL);
-            actual = exchangeRates.ConvertInto(CNY_STR, EUR_STR, valueToConvert);
+            actual = exchangeRates.ConvertCurrency(CNY_STR, EUR_STR, valueToConvert);
             Assert.AreEqual(expected, actual);
         }
 
@@ -98,14 +98,14 @@ namespace OpenExchangeRates_Test
             expected = new List<decimal>();
             foreach (var v in valuesToConvert)
                 expected.Add(v * (CNY_VAL / EUR_VAL));
-            actual = exchangeRates.ConvertInto(EUR_STR, CNY_STR, valuesToConvert);
+            actual = exchangeRates.ConvertCurrency(EUR_STR, CNY_STR, valuesToConvert);
             Assert.AreEqual(true, Enumerable.SequenceEqual(expected, actual));
 
             //#2
             expected = new List<decimal>();
             foreach (var v in valuesToConvert)
                 expected.Add(v * (USD_VAL / CNY_VAL));
-            actual = exchangeRates.ConvertInto(CNY_STR, USD_STR, valuesToConvert);
+            actual = exchangeRates.ConvertCurrency(CNY_STR, USD_STR, valuesToConvert);
             Assert.AreEqual(true, Enumerable.SequenceEqual(expected, actual));
         }
     }

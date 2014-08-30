@@ -49,6 +49,19 @@ namespace OpenExchangeRates
             oerUrlCaches = new Dictionary<string, OERCache>();
         }
 
+
+
+        /// <summary>
+        /// Retrieve the current exchange rates 
+        /// </summary>
+        /// <exception cref="Exception"></exception>
+        /// <exception cref="APIErrorException">Thrown when the API returns an error</exception>
+        /// <returns>Exchange rates</returns>
+        public ExchangeRates GetExchangeRates()
+        {
+            return GetExchangeRates(null, null);
+        }
+
         /// <summary>
         /// Retrieve the current exchange rates 
         /// </summary>
